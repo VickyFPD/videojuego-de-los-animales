@@ -1,13 +1,22 @@
-let animal = 0
-input.onButtonPressed(Button.A, function () {
-    animal = randint(0, 3)
-    if (0 == animal) {
+radio.onReceivedNumber(function (receivedNumber) {
+    animal += randint(0, 3)
+    if (animal == 0) {
         basic.showIcon(IconNames.StickFigure)
-    } else if (1 == animal) {
+    }
+    if (animal == 1) {
         basic.showIcon(IconNames.Giraffe)
-    } else if (2 == animal) {
+    }
+    if (animal == 2) {
         basic.showIcon(IconNames.EigthNote)
-    } else if (3 == animal) {
+    }
+    if (animal == 3) {
         basic.showIcon(IconNames.Scissors)
     }
+})
+let animal = 0
+radio.setGroup(0)
+basic.forever(function () {
+    radio.sendNumber(0)
+    animal = randint(0, 3)
+    basic.pause(2000)
 })
